@@ -79,7 +79,7 @@ Array.prototype.insert = function(index, value) {
   }
 
   memory.copy(
-    this.ptr + index +1,     // to
+    this.ptr + index + 1,     // to
     this.ptr + index,        // from
     this.length - index      // size
   );
@@ -97,8 +97,34 @@ Array.prototype.remove = function(index) {
     throw new Error('Index error');
   }
 
-  memory.copy(this.ptr + index, this.ptr + index + 1, this.length - index - 1);
+  memory.copy(
+    this.ptr + index,         // to
+    this.ptr + index + 1,     // from
+    this.length - index - 1   // size
+  );
 
   this.length--;
 
 };
+
+Array.prototype.getArray = function() {
+  var arr = [];
+
+  for (let i = 0; i < this.length; i++) {
+    arr.push(this.get(i));
+  }
+
+  return arr;
+};
+
+var foo = new Array();
+foo.push(0);
+foo.push(1);
+foo.push(2);
+foo.push(3);
+foo.push(4);
+foo.push(5);
+foo.push(6);
+foo.push(7);
+foo.push(8);
+foo.push(9);
